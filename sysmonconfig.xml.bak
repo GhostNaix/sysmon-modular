@@ -902,10 +902,6 @@
         <DestinationHostname condition="end with">download.microsoft.com</DestinationHostname>
         <DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>
         <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
-        <Image condition="end with">PROCESS EXPLORER.EXE/Image>
-        <Image condition="end with">procexp.exe</Image>
-        <Image condition="end with">procexp64.exe</Image>
-        <Image condition="end with">procexp64a.exe</Image>
       </NetworkConnect>
     </RuleGroup>
     <!-- Event ID 5 == Process Terminated - Includes -->
@@ -1340,11 +1336,6 @@
         <SourceImage condition="is">C:\Program Files (x86)\VMware\VMWare Player\vmware-authd.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files (x86)\VMware\VMware Workstation\vmware-authd.exe</SourceImage>
         <SourceImage condition="is">C:\Program Files\WinZip\FAHWindow64.exe</SourceImage>
-        <!-- Sysinternal tools whitelist -->
-        <!-- Process Explorer -->
-        <SourceImage condition="contains all">PROCESS EXPLORER.EXE;procexp.exe;procexp64.exe;procexp64a.exe</SourceImage>
-        <TargetImage condition="contains all">PROCESS EXPLORER.EXE;procexp.exe;procexp64.exe;procexp64a.exe</TargetImage>
-        
       </ProcessAccess>
     </RuleGroup>
     <!-- Event ID 11 == FileCreate - Includes -->

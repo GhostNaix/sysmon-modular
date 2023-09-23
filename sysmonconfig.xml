@@ -902,10 +902,6 @@
         <DestinationHostname condition="end with">download.microsoft.com</DestinationHostname>
         <DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname>
         <DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname>
-        <Image condition="end with">PROCESS EXPLORER.EXE</Image>
-        <Image condition="end with">procexp.exe</Image>
-        <Image condition="end with">procexp64.exe</Image>
-        <Image condition="end with">procexp64a.exe</Image>
       </NetworkConnect>
     </RuleGroup>
     <!-- Event ID 5 == Process Terminated - Includes -->
@@ -1132,6 +1128,12 @@
           <Image condition="is">C:\Windows\System32\svchost.exe</Image>
           <ImageLoaded condition="is">C:\Windows\System32\perfctrs.dll</ImageLoaded>
         </Rule>
+        <!-- Sysinternal tools whitelist -->
+        <!-- Process Explorer -->
+        <Image condition="end with">Process Explorer.exe</Image>
+        <Image condition="end with">procexp.exe</Image>
+        <Image condition="end with">procexp64.exe</Image>
+        <Image condition="end with">procexp64a.exe</Image>
       </ImageLoad>
     </RuleGroup>
     <!-- Event ID 8 == CreateRemoteThread - Excludes -->
@@ -1342,8 +1344,12 @@
         <SourceImage condition="is">C:\Program Files\WinZip\FAHWindow64.exe</SourceImage>
         <!-- Sysinternal tools whitelist -->
         <!-- Process Explorer -->
-        <SourceImage condition="contains all">PROCESS EXPLORER.EXE;procexp.exe;procexp64.exe;procexp64a.exe</SourceImage>
-        <TargetImage condition="contains all">PROCESS EXPLORER.EXE;procexp.exe;procexp64.exe;procexp64a.exe</TargetImage>
+        <SourceImage condition="image">Process Explorer.exe</SourceImage>
+        <SourceImage condition="image">procexp.exe</SourceImage>
+        <SourceImage condition="image">procexp64.exe</SourceImage>
+        <SourceImage condition="image">procexp64a.exe</SourceImage>
+        <!-- Whitelist wazuh -->
+        <SourceImage condition="image">wazuh-agent.exe</SourceImage>
         
       </ProcessAccess>
     </RuleGroup>
@@ -1543,6 +1549,8 @@
           <Image condition="is">C:\Windows\System32\svchost.exe</Image>
           <TargetFilename condition="is">C:\Windows\ServiceProfiles\LocalService\AppData\Local\lastalive1.dat</TargetFilename>
         </Rule>
+        <!-- Whitelist wazuh -->
+        <Image condition="end with">wazuh-agent.exe</Image>
       </FileCreate>
     </RuleGroup>
     <!-- Event ID 12,13,14 == RegObject added/deleted, RegValue Set, RegObject Renamed - Includes -->
@@ -1979,6 +1987,15 @@
         <TargetObject condition="end with">\services\TrustedInstaller\Start</TargetObject>
         <TargetObject condition="end with">\services\tunnel\Start</TargetObject>
         <TargetObject condition="end with">\services\UsoSvc\Start</TargetObject>
+        <!-- Sysinternal tools whitelist -->
+        <!-- Process Explorer -->
+        <Image condition="end with">Process Explorer.exe</Image>
+        <Image condition="end with">procexp.exe</Image>
+        <Image condition="end with">procexp64.exe</Image>
+        <Image condition="end with">procexp64a.exe</Image>
+        <!-- Whitelist wazuh -->
+        <Image condition="end with">wazuh-agent.exe</Image>
+
       </RegistryEvent>
     </RuleGroup>
     <!-- Event ID 15 == FileStream Created - Includes -->
